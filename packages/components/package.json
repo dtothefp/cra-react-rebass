@@ -1,0 +1,18 @@
+{
+  "name": "@css/components",
+  "version": "1.0.0",
+  "main": "cjs/index.js",
+  "module": "es/index.js",
+  "license": "MIT",
+  "scripts": {
+    "compile:cjs": "BABEL_ENV=cjs babel --root-mode upward ./lib --out-dir ./cjs --ignore '**/*.test.js'",
+    "compile:es": "BABEL_ENV=es babel --root-mode upward ./lib --out-dir ./es --ignore '**/*.test.js'",
+    "build": "npm-run-all compile:cjs compile:es"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.8.4"
+  },
+  "dependencies": {
+    "@css/redux": "1.0.0"
+  }
+}
