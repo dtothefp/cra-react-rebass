@@ -1,11 +1,11 @@
-export const WALMART = 'Walmart';
-export const CVS = 'CVS';
-export const WALGREENS = 'Walgreens';
-export const TARGET = 'Target';
-export const RITE_AID = 'Rite-Aid';
-export const RALPHS = 'Ralphs';
-export const VONS = 'Vons';
-export const COSTCO = 'Costco';
+export const WALMART = `WALMART`;
+export const CVS = `CVS`;
+export const WALGREENS = `WALGREENS`;
+export const TARGET = `TARGET`;
+export const RITE_AID = `RITE-AID`;
+export const RALPHS = `RALPHS`;
+export const VONS = `VONS`;
+export const COSTCO = `COSTCO`;
 
 export const chainIds = {
   [WALMART]: 1,

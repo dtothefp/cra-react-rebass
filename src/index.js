@@ -5,7 +5,6 @@ import theme from '@rebass/preset';
 import { Global, css } from '@emotion/core';
 import emotionNormalize from 'emotion-normalize';
 import { Provider as ReduxProvider } from './store';
-import './index.css';
 import App from './components/App/App';
 import registerServiceWorker from './registerServiceWorker';
 
@@ -23,6 +22,7 @@ Object.assign(theme, {
 
 const initialState = {
   filter: [],
+  pharmacies: [],
 };
 
 const Page = () => (
@@ -48,5 +48,5 @@ const Page = () => (
   </ThemeProvider>
 );
 
-ReactDOM.render(<Page />, document.getElementById("root"));
+ReactDOM.render(<Page />, document.getElementById(`root`));
 registerServiceWorker();

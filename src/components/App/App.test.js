@@ -1,9 +1,22 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App";
+import React from 'react';
+import { shallow, render } from 'enzyme';
+import App from './App';
+import { Provider } from '../../store';
+import mapsMock from '../../mocks/google.maps';
 
-it("renders without crashing", () => {
-  const div = document.createElement("div");
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+describe('#App', () => {
+  beforeAll(() => {
+    global.google = mapsMock;
+  });
+
+  it('renders without crashing', () => {
+    expect(
+      render(
+        <Provider>
+          <App />
+        </Provider>
+      )
+    ).toMatchSnapshot();
+  });
 });
+

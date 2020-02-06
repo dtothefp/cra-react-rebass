@@ -7,6 +7,7 @@ import React, { Component } from "react";
 import { Box, Heading } from 'rebass';
 import FilterBox from '../FilterBox/FilterBox';
 import SearchBar from '../SearchBar/SearchBar';
+import PharmacyList from '../PharmacyList/PharmacyList';
 
 class App extends Component {
   render() {
@@ -18,7 +19,7 @@ class App extends Component {
           color="text"
           p={4}
           sx={{
-            textAlign: 'center'
+            textAlign: `center`
           }}
         >
           <Heading
@@ -35,6 +36,7 @@ class App extends Component {
         >
           <SearchBar />
           <FilterBox />
+          <PharmacyList />
         </Box>
       </div>
     );
