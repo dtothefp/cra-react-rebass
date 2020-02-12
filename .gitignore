@@ -1,9 +1,5 @@
 .DS_Store
 .env
-.next
-out
-es
-cjs
-dist
+build
 node_modules
 *.log

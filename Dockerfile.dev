@@ -8,9 +8,8 @@ COPY ./ /usr/src/app
 WORKDIR /usr/src/app
 
 RUN yarn
-RUN yarn lerna run build
 ENV NODE_ENV=development
 
 EXPOSE 3000
 
-CMD ["yarn", "dev"]
+CMD ["yarn", "start"]

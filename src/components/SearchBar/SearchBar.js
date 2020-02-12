@@ -11,8 +11,9 @@ const SearchBar = () => {
   const [searchValue, setSearchValue] = useState(``);
   const [geolocation, setGeoLocation] = useState({});
   const [disabled, setDisabled] = useState(false);
-  const predictions = useAutoComplete(searchValue);
-  const {loading} = usePharmacyRequest(geolocation);
+  const {predictions} = useAutoComplete(searchValue);
+
+  usePharmacyRequest(geolocation);
 
   const handleChange = (e) => {
     const {value} = e.target;
@@ -22,13 +23,11 @@ const SearchBar = () => {
 
   const handleValueSelection = (prediction) => async () => {
     setSearchValue(prediction);
-    setDisabled(true);
 
     const response = await Geocode.fromAddress(prediction);
     const geoData = response.results[0].geometry.location;
 
     setGeoLocation(geoData);
-    setDisabled(false);
   };
 
   const handleLocationSelection = async () => {
@@ -53,7 +52,7 @@ const SearchBar = () => {
     setDisabled(false);
   };
 
-  const isDisabled = loading || disabled;
+  const isDisabled = disabled;
 
   return (
     <Flex
@@ -61,7 +60,7 @@ const SearchBar = () => {
       flexWrap='wrap'
     >
       <Box
-        width={["100%", "70%"]}
+        width={[`100%`, `70%`]}
         sx={{
           position: `relative`,
         }}
@@ -69,6 +68,9 @@ const SearchBar = () => {
         <Box
           mr={[0, 2, 2]}
           mb={[2, 0, 0]}
+          sx={{
+            position: `relative`
+          }}
         >
           <Input
             type="text"
@@ -78,7 +80,7 @@ const SearchBar = () => {
             disabled={isDisabled}
             sx={{
               '&:disabled': {
-                backgroundColor: 'gray',
+                backgroundColor: `gray`,
               },
             }}
           />
@@ -108,14 +110,14 @@ const SearchBar = () => {
         </Box>
       </Box>
       <Button
-        width={["100%", "30%"]}
+        width={[`100%`, `30%`]}
         color="black"
         onClick={handleLocationSelection}
         disabled={isDisabled}
         sx={{
           cursor: `pointer`,
           '&:disabled': {
-            backgroundColor: 'gray',
+            backgroundColor: `gray`,
           },
         }}
       >My Location</Button>

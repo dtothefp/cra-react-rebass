@@ -28,7 +28,7 @@ const FilterBox = () => {
         <Label
           key={`${name}-${i}`}
           my={[1, 1, 0]}
-          width={["50%", `${midWidth}%`, `${desktopWidth}%`]}
+          width={[`50%`, `${midWidth}%`, `${desktopWidth}%`]}
         >
           <Checkbox
             name={name.toLowerCase()}

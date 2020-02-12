@@ -17,7 +17,7 @@ export default (input) => {
     if (!input) return null;
 
     autocomplete.current.getPlacePredictions({ input }, async (autoPredictions = []) => {
-      const descriptions = autoPredictions.map(({description}) =>description);
+      const descriptions = autoPredictions.map(({description}) => description);
 
       if(descriptions.includes(input)) {
         return setPredictions([])
@@ -36,5 +36,5 @@ export default (input) => {
     debouncedGetPlacePredictions(input);
   }, [input]);
 
-  return predictions;
+  return { predictions };
 }

@@ -4,10 +4,8 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile
-      args:
-        SERVER_URL: "http://localhost"
-    image: css_app
-    container_name: css_app
+    image: goodrx_app
+    container_name: goodrx_app
     ports:
       - 80:3000
     environment:

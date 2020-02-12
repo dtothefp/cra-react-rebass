@@ -5,4 +5,6 @@
 /packages/*/cjs/
 /packages/*/es/
 /packages/*/node_modules/
-theme.js
+/build
+/src/serviceWorker.js
+

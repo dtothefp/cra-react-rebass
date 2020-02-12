@@ -1,15 +1,15 @@
 import React from 'react';
-import { shallow, render } from 'enzyme';
+import { render } from 'enzyme';
 import App from './App';
 import { Provider } from '../../store';
-import mapsMock from '../../mocks/google.maps';
+import mapsMock from '../../__mocks__/google.maps';
 
-describe('#App', () => {
+describe(`#App`, () => {
   beforeAll(() => {
     global.google = mapsMock;
   });
 
-  it('renders without crashing', () => {
+  it(`renders without crashing`, () => {
     expect(
       render(
         <Provider>

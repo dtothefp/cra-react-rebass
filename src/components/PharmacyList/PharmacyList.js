@@ -8,12 +8,12 @@ const PharmacyList = () => {
 
   return (
     <Box>
-      {pharmacies.map(({phone_number, name, address}) => (
+      {pharmacies.map(({phone_number, name, address}, i) => (
         <PharmacyListItem
           address={address}
           name={name}
           phone={phone_number}
-          key={`${name}-${phone_number}`}
+          key={`${name}-${phone_number}-${i}`}
         />
       ))}
     </Box>
