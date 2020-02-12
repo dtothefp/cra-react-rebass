@@ -1,41 +1,55 @@
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+# GoodRX Code Challenge
 
-## Front End Take Home Question
-Create a simple React App to display a list of pharmacies using GoodRx API. User should enter a location or click My Location to use Geolocation Web API to get a list of pharmacies. User can also select particular pharmacies from the list of checkboxes to narrow down the results.
+Welcome to the GoodRX code challenge
 
-API: `https://www.goodrx.com/api/v4/pharmacies`
+## Getting Started
 
+This project is dependent on [yarn](https://yarnpkg.com/) so please [install it globally](https://classic.yarnpkg.com/en/docs/install/#mac-stable) on your machine or use the Docker commands
+
+### Running Locally
+Install all dependencies
 ```
-Params: {
-  chain_id <number>: one or more
-  location <string>: location string or lat_long
-}
-```
-
-Chain ids:
-1 Walmart
-2 CVS
-3 Walgreens
-6 Target
-23357 Rite-Aid
-20052 Ralphs
-93177 Vons
-31240 Costco
-
-Example:
-
-```
-https://www.goodrx.com/api/v4/pharmacies?chain_id=2&chain_id=6&location=34.018176,-118.497198
-
-https://www.goodrx.com/api/v4/pharmacies?chain_id=2&chain_id=6&location=Los+Angeles,+CA
+yarn
 ```
 
-## Fetching Data with AJAX Requests
+Start a local dev server with hot reloading and serve port 3000 => `http://localhost:3000`
+```
+yarn start
+```
 
-React doesn't prescribe a specific approach to data fetching, but people commonly use either a library like [axios](https://github.com/axios/axios) or the [`fetch()` API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) provided by the browser. Conveniently, Create React App includes a polyfill for `fetch()` so you can use it without worrying about the browser support.
+Bundle and optimize all static assets and serve port 3000 => `http://localhost:3000`
+```
+yarn build
+yarn serve
+```
 
-The global `fetch` function allows to easily makes AJAX requests. It takes in a URL as an input and returns a `Promise` that resolves to a `Response` object. You can find more information about `fetch` [here](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch).
+### Running Locally With Docker
+Start a local dev server with hot reloading and serve port 3000 => `http://localhost:3000`
+```
+docker-compose -f docker-compose.override.yml up app
+```
 
-This project also includes a [Promise polyfill](https://github.com/then/promise) which provides a full implementation of Promises/A+. A Promise represents the eventual result of an asynchronous operation, you can find more information about Promises [here](https://www.promisejs.org/) and [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise). Both axios and `fetch()` use Promises under the hood. You can also use the [`async / await`](https://davidwalsh.name/async-await) syntax to reduce the callback nesting.
+Bundle and optimize all static assets and serve on port 80 with NGINX => `http://localhost`
+```
+docker-compose -f docker-compose.yml up app
+```
 
-You can learn more about making AJAX requests from React components in [the FAQ entry on the React website](https://reactjs.org/docs/faq-ajax.html).
+### Technologies Utilized
+- [Create React App](https://create-react-app.dev/)
+  - This boilerplate was provided with the challenge although I updated it to the latest version in order to utilize [React Hooks](https://reactjs.org/docs/hooks-intro.html).
+- [Rebass](https://rebassjs.org/) / [Emotion](https://emotion.sh/docs/introduction) / [Styled Components](https://styled-components.com/)
+  - I started off wanting to use Styled Components along with [Styled System](https://styled-system.com/). I ended up using Rebass because I wanted a light weight component library that allowed for theming using CSS in JS. Rebass is built upon Emotion and therefore I opted out of Styled Components but ended up having to use this in one place in the app for keyframe animations. This is not ideal because both Emotion and Styled Components must be bundled. Overall, I really enjoyed the theming available in these frameworks and the declarative nature of Rebass but in the future if I had more time would most likely build a complete style guide using Styled Components and Styled System.
+
+### Application Concerns and TODO's
+- Potentially modularize the `SearchBar` component.
+  - I'm newer to using Hooks and wasn't completely sure if creating more module components / hooks would work for the `SearchBar`. As is the "loading" state is quite naive and the tests for the `SearchBar` are very monolithic.
+
+### Testing
+This app uses [Jest](https://jestjs.io/) and [Enzyme](https://airbnb.io/enzyme/) to test the client side application as well as using Jest to test the server application.
+
+To run tests
+```
+yarn test
+```
+
+
