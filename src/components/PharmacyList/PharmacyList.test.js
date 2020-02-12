@@ -1,18 +1,17 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import App from './App';
+import PharmacyList from './PharmacyList';
 import { Provider } from '../../store';
-import mapsMock from '../../__mocks__/google.maps';
+import pharmacyMock from '../../__mocks__/pharmacy.item';
 
 describe(`#App`, () => {
-  beforeAll(() => {
-    global.google = mapsMock;
-  });
-
   it(`renders without crashing`, () => {
+    const store = {
+      pharmacies: [pharmacyMock],
+    };
     const {container} = render(
-      <Provider>
-        <App />
+      <Provider store={store}>
+        <PharmacyList />
       </Provider>
     );
 

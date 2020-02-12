@@ -11,6 +11,7 @@ const SearchBar = () => {
   const [searchValue, setSearchValue] = useState(``);
   const [geolocation, setGeoLocation] = useState({});
   const [disabled, setDisabled] = useState(false);
+  const [error, setLocationError] = useState(false);
   const {predictions} = useAutoComplete(searchValue);
 
   usePharmacyRequest(geolocation);
@@ -31,24 +32,34 @@ const SearchBar = () => {
   };
 
   const handleLocationSelection = async () => {
-    setDisabled(true);
+    try {
+      setDisabled(true);
 
-    const {
-      coords: {
-        latitude: lat,
-        longitude: lng,
+      if (error) {
+        setLocationError(false);
       }
-    } = await new Promise((res) => navigator.geolocation.getCurrentPosition(res));
 
-    setGeoLocation({
-      lat,
-      lng,
-    });
+      const {
+        coords: {
+          latitude: lat,
+          longitude: lng,
+        }
+      } = await new Promise((res, rej) => navigator.geolocation.getCurrentPosition(res, rej, {timeout: 5000, enableHighAccuracy: true}));
 
-    const {results} = await Geocode.fromLatLng(lat, lng)
-    const address = results[0].formatted_address;
+      setGeoLocation({
+        lat,
+        lng,
+      });
 
-    setSearchValue(address);
+      const {results} = await Geocode.fromLatLng(lat, lng)
+      const address = results[0].formatted_address;
+
+      setSearchValue(address);
+    } catch (err) {
+      setLocationError(true);
+      console.log(`*******ERRR`, err);
+    }
+
     setDisabled(false);
   };
 
@@ -79,6 +90,7 @@ const SearchBar = () => {
             value={searchValue}
             disabled={isDisabled}
             sx={{
+              borderColor: isDisabled ? `gray` : error ? `error` : `secondary`,
               '&:disabled': {
                 backgroundColor: `gray`,
               },

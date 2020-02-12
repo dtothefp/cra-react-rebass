@@ -1,9 +1,6 @@
 /* eslint react-hooks/exhaustive-deps: 0 */
 import debounce from 'debounce';
-import Geocode from 'react-geocode';
 import { useCallback, useState, useEffect, useRef } from "react";
-
-Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY);
 
 export default (input) => {
   const [predictions, setPredictions] = useState([]);

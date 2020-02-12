@@ -1,0 +1,23 @@
+export default {
+  npi: `1861557993`,
+  name: `CVS Pharmacy`,
+  address: {
+    line1: `255 Main St`,
+    city: `Venice`,
+    state: `CA`,
+    zip_code: `90291`,
+    latitude: 33.996369,
+    longitude: -118.478253,
+    line2: ``,
+  },
+  website_url: `/pharmacy-near-me/cvs-pharmacy/ca/venice/255-main-st/1861557993`,
+  phone_number: `(310) 399-2436`,
+  fax_number: `(310) 399-2804`,
+  extras: {compounding_service: true},
+  opening_hours: {weekday_text: [], open_24: false},
+  distance_mi: 0.9053923643970333,
+  services: [`COMPOUNDING_SERVICE`],
+  google_rating: null,
+  yelp_rating: null,
+  nearby_pharmacies: [],
+};

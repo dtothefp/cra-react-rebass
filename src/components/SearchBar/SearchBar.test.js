@@ -6,7 +6,6 @@ import {
   waitForDomChange,
   waitForElement
 } from '@testing-library/react';
-import * as Enzyme from 'enzyme';
 import SearchBar from './SearchBar';
 import Geocode from 'react-geocode';
 import { StoreContext } from '../../store';
@@ -46,9 +45,11 @@ const MOCK_LNG = `lng`;
 
 const fetchMock = jest.spyOn(global, `fetch`).mockReturnValue(
   Promise.resolve({
-    json: () => ([
-      MOCK_PHARMACY
-    ])
+    json: () => ({
+      pharmacies: [
+        MOCK_PHARMACY
+      ]
+    })
   })
 );
 
@@ -88,13 +89,13 @@ describe(`#SearchBar`, () => {
   });
 
   it(`renders`, () => {
-    expect(
-      Enzyme.render(
-        <StoreContext.Provider value={{dispatch, state}}>
-          <SearchBar />
-        </StoreContext.Provider>
-      )
-    ).toMatchSnapshot();
+    const {container} = render(
+      <StoreContext.Provider value={{dispatch, state}}>
+        <SearchBar />
+      </StoreContext.Provider>
+    );
+
+    expect(container).toMatchSnapshot();
   });
 
   it(`fetches pharmacies when an auto-prediction is clicked`, async () => {

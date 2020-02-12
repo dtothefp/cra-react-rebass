@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount, render } from 'enzyme';
+import { fireEvent, queryByAttribute, render } from '@testing-library/react';
 import FilterBox from './FilterBox';
 import { actions, StoreContext } from '../../store';
 import { WALMART } from '../../utils/constants';
@@ -10,29 +10,29 @@ describe(`#FilterBox`, () => {
   const {addFilter, removeFilter} = actions;
 
   it(`renders`, () => {
-    expect(
-      render(
-        <StoreContext.Provider value={{dispatch, state}}>
-          <FilterBox />
-        </StoreContext.Provider>
-      )
-    ).toMatchSnapshot();
+    const {container} = render(
+      <StoreContext.Provider value={{dispatch, state}}>
+        <FilterBox />
+      </StoreContext.Provider>
+    );
+
+    expect(container).toMatchSnapshot();
   });
 
   it(`updates the state when checked`, () => {
-    const wrapper = mount(
+    const {container} = render(
       <StoreContext.Provider value={{dispatch, state}}>
         <FilterBox />
       </StoreContext.Provider>
     );
 
     const name = WALMART.toLowerCase();
-    const walmart = wrapper.find(`input[name="${name}"]`);
+    const walmart = queryByAttribute(`name`, container, name);
 
-    walmart.simulate(`change`, {target: {checked: true, name}});
+    fireEvent.click(walmart);
     expect(dispatch.mock.calls[0][0]).toEqual(addFilter(name));
 
-    walmart.simulate(`change`, {target: {checked: false, name}});
+    fireEvent.click(walmart);
     expect(dispatch.mock.calls[1][0]).toEqual(removeFilter(name));
   });
 });

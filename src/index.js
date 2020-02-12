@@ -13,10 +13,11 @@ Object.assign(theme, {
     text: `#000`,
     background: `#fff`,
     primary: `#f9e547`,
-    secondary: `#bf1866`,
+    secondary: `#000`,
     muted: `#379683`,
     gray: `#efefef`,
     highlight: `#51A296`,
+    error: `#cc0000`,
   },
 });
 

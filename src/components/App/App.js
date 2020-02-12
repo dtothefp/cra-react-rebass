@@ -1,9 +1,4 @@
-/*
- * Created with React Create App
- * https://github.com/facebook/create-react-app
-*/
-
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import { Box, Heading } from 'rebass';
 import FilterBox from '../FilterBox/FilterBox';
 import SearchBar from '../SearchBar/SearchBar';
@@ -33,6 +28,7 @@ class App extends Component {
           my={5}
           mx="auto"
           width="80%"
+          maxWidth="1024px"
         >
           <SearchBar />
           <FilterBox />
