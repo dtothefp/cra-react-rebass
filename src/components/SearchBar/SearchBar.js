@@ -44,7 +44,7 @@ const SearchBar = () => {
           latitude: lat,
           longitude: lng,
         }
-      } = await new Promise((res, rej) => navigator.geolocation.getCurrentPosition(res, rej, {timeout: 5000, enableHighAccuracy: true}));
+      } = await new Promise((res, rej) => navigator.geolocation.getCurrentPosition(res, rej, {timeout: 10000, enableHighAccuracy: true}));
 
       setGeoLocation({
         lat,
