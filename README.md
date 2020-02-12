@@ -4,7 +4,7 @@ Welcome to the GoodRX code challenge
 
 ## Getting Started
 
-This project is dependent on [yarn](https://yarnpkg.com/) so please [install it globally](https://classic.yarnpkg.com/en/docs/install/#mac-stable) on your machine or use the Docker commands
+This project is dependent on [yarn](https://yarnpkg.com/) so please [install it globally](https://classic.yarnpkg.com/en/docs/install/#mac-stable) on your machine or use the [Docker commands](#running-locally-with-docker):
 
 ### Running Locally
 Install all dependencies
@@ -42,14 +42,19 @@ docker-compose -f docker-compose.yml up app
 
 ### Application Concerns and TODO's
 - Potentially modularize the `SearchBar` component.
-  - I'm newer to using Hooks and wasn't completely sure if creating more module components / hooks would work for the `SearchBar`. As is the "loading" state is quite naive and the tests for the `SearchBar` are very monolithic.
+  - I'm newer to using React Hooks and wasn't completely sure if creating more module components / hooks would work for the `SearchBar`. As is the "loading" state is quite naive and the tests for the `SearchBar` are very monolithic.
 - Caching API requests.
-  - Again being newer to building custom hooks in combination with a "redux like" architechture I was unsure where caching should take place. For example, in the `usePharamcy` hook we are making an HTTP request for every `lat` and `lng` change as well as for every time a checkbox is checked / unchecked. Ideally, we would cache responses either in local or "redux" state and only make requests for requests that are not in the cache.
+  - Again being newer to building custom React Hooks in combination with a "redux like" architechture I was unsure where caching should take place. For example, in the `usePharamcy` hook we are making an HTTP request for every `lat` and `lng` change as well as for every time a checkbox is checked / unchecked. Ideally, we would cache responses either in local or "redux" state and only make requests for request url's that are not in the cache.
 
 ### Testing
 This app uses [Jest](https://jestjs.io/) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro) to test application. React Testing Library proved to be a great asset in testing components that use asynchronous hooks as [Enzyme](https://airbnb.io/enzyme/) has not yet been updated to work well with React Hooks.
 
-To run tests
+To run tests and watch for changes:
+```
+yarn test
+```
+
+To run tests and exit:
 ```
 yarn test --watchAll=false
 ```
